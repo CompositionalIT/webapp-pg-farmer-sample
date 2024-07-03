@@ -1,0 +1,6 @@
+source https://api.nuget.org/v3/index.json
+framework: net8.0
+storage: none
+
+nuget SAFE.Server ~> 5
+nuget Farmer ~> 1
