@@ -1,10 +1,11 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿
 <Project Sdk="Microsoft.NET.Sdk.Web">
     <PropertyGroup>
         <OutputType>Exe</OutputType>
         <TargetFramework>net8.0</TargetFramework>
         <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    </PropertyGroup>
+      <UserSecretsId>4399c574-62e7-41d2-9b1d-48d6861c34ff</UserSecretsId>
+  </PropertyGroup>
     <ItemGroup>
         <None Include="paket.references" />
         <Compile Include="Program.fs" />

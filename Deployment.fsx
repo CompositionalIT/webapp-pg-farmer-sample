@@ -4,12 +4,13 @@ open Farmer
 open Farmer.Builders
 open System
 
-Environment.SetEnvironmentVariable("DbPassword", "qweRTY123123$$")
-
 /// Creates a PgSql and web app resources for a specific environment e.g. "dev" or "test".
-let createEnvironment (appName: string) envName =
+let createEnvironment envName =
+    let appName = "myApp"
     let dbServerName = $"%s{appName}-dbserver-{envName}"
 
+    // Currently deploys a single-instance PostgreSQL server
+    // Farmer is being updated to support Flexible databases.
     let pgServer =
         let database = postgreSQLDb { name appName }
 
@@ -57,7 +58,9 @@ let createEnvironment (appName: string) envName =
 
     rg, dbServerName
 
-let deployment, dbServerName = createEnvironment "impactisaac" "dev"
+let envName = "test"
+
+let deployment, dbServerName = createEnvironment envName
 
 deployment |> Writer.quickWrite "template"
 
@@ -67,4 +70,4 @@ let dbPassword =
     | value -> value
 
 deployment
-|> Deploy.execute "impactDemo" [ $"password-for-{dbServerName}", dbPassword; "DbPassword", dbPassword ]
+|> Deploy.execute $"impactDemo-{envName}" [ $"password-for-{dbServerName}", dbPassword; "DbPassword", dbPassword ]

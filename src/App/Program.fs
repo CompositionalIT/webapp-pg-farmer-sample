@@ -14,7 +14,7 @@ let helloWorld next (ctx: HttpContext) = task {
     let dbDomainName =
         match config["DbDomainName"] with
         | null -> "NOT SET"
-        | value -> value
+        | value -> $"'{value}'"
 
     let description =
         match config["DbPassword"] with
